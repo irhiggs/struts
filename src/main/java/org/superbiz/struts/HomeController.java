@@ -58,6 +58,12 @@ public class HomeController {
         return "displayUser";
     }
 
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam long id, Model model) {
+        userRepository.deleteById(id);
+        return listUsers(model);
+    }
+
     @GetMapping("/list")
     public String listUsers(Model model) {
         model.addAttribute("users", userRepository.findAll());
